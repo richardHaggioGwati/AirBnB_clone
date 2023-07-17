@@ -2,7 +2,6 @@
 """Module for the entry point of the command interpreter."""
 
 import cmd
-from models.base_model import BaseModel
 from models import storage
 
 
@@ -10,7 +9,7 @@ class HBNBCommand(cmd.Cmd):
     """Entry point for the code"""
 
     prompt = '(hbnb) '
-    valid_classes = {"BaseModel", "User"}
+    valid_classes = {"BaseModel", "User", "City", "Place", "State", "Amenity", "Review"}
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -33,11 +32,11 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = arg.strip()
-        if class_name not in self.valid_classes:
+        if class_name not in storage.classes():
             print("** class doesn't exist **")
             return
 
-        new_instance = BaseModel()
+        new_instance = storage.classes()[class_name]()
         new_instance.save()
         print(new_instance.id)
 
@@ -49,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        if args[0] not in self.valid_classes:
+        if args[0] not in storage.classes():
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -71,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        if args[0] not in self.valid_classes:
+        if args[0] not in storage.classes():
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -91,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: all [class name]
         """
         args = arg.split()
-        if args and args[0] not in self.valid_classes:
+        if args and args[0] not in storage.classes():
             print("** class doesn't exist **")
             return
 
@@ -107,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        if args[0] not in self.valid_classes:
+        if args[0] not in storage.classes():
             print("** class doesn't exist **")
             return
         if len(args) < 2:
