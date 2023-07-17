@@ -2,7 +2,6 @@
 """Module for the entry point of the command interpreter."""
 
 import cmd
-import json
 from models.base_model import BaseModel
 from models import storage
 
@@ -11,7 +10,7 @@ class HBNBCommand(cmd.Cmd):
     """Entry point for the code"""
 
     prompt = '(hbnb) '
-    valid_classes = {"BaseModel"}
+    valid_classes = {"BaseModel", "User"}
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
