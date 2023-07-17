@@ -8,6 +8,8 @@ from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
+    """Entry point for the code"""
+
     prompt = '(hbnb) '
     valid_classes = {"BaseModel"}
 
