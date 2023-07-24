@@ -9,7 +9,6 @@ class HBNBCommand(cmd.Cmd):
     """Entry point for the code"""
 
     prompt = '(hbnb) '
-    valid_classes = {"BaseModel", "User", "City", "Place", "State", "Amenity", "Review"}
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
